@@ -6,6 +6,16 @@ using namespace std;
 // Функция чтения из файла
 vector<string> readLinesFromFile(const string& filename) {
     vector<string> lines;
+    ifstream file(filename);
+    if (file.is_open()) {
+        string line;
+        while (getline(file, line)) {
+            lines.push_back(line);
+        }
+        file.close();
+    } else {
+        cerr << "Ошибка открытия файла: " << filename << endl;
+    }
     return lines;
 }
 
