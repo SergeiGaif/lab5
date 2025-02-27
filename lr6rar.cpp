@@ -49,6 +49,17 @@ void printRAR4Contents(const vector<uint8_t>& data) {
             // Извлечение имени файла
             size_t nameSize = fileHeader->headerSize - sizeof(RAR4FileHeader);
             string fileName(reinterpret_cast<const char*>(data.data() + pos + sizeof(RAR4FileHeader)), nameSize);
+			
+			// Вывод информации о файле
+            cout << "Имя файла: " << fileName << endl;
+            cout << "Размер упакованных данных: " << fileHeader->packSize << " байт" << endl;
+            cout << "----------------------------------------" << endl;
+        }
+
+        // Переход к следующей записи
+        pos += fileHeader->headerSize + fileHeader->packSize;
+    }
+}
 int main() {
     // Чтение файла архива
     ifstream file("Example.rar", ios::binary | ios::ate);
