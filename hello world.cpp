@@ -3,10 +3,12 @@
 #include <fstream>
 using namespace std;
 
+// Функция чтения из файла
 vector<string> readLinesFromFile(const string& filename) {
     vector<string> lines;
     return lines;
 }
+
 
 void printLines(const vector<string>& lines) {
 }
