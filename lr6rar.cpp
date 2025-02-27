@@ -5,6 +5,24 @@
 #include <iomanip>
 
 using namespace std;
+#pragma pack(push, 1) // Выравнивание по 1 байту
+
+// Структура для заголовка архива RAR4
+struct RAR4VolumeHeader {
+    char signature[7]; // Сигнатура "Rar!"
+    uint16_t version;  // Версия формата
+};
+
+// Структура для общего заголовка записи
+struct RAR4FileHeader {
+    uint16_t crc;       // Контрольная сумма
+    uint8_t type;       // Тип записи (0x74 для файла)
+    uint16_t flags;     // Флаги
+    uint16_t headerSize; // Размер заголовка
+    uint32_t packSize;  // Размер упакованных данных
+};
+
+#pragma pack(pop) // Возвращаем выравнивание по умолчанию
 int main() {
     // Чтение файла архива
     ifstream file("Example.rar", ios::binary | ios::ate);
